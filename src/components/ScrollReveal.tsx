@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 
 interface ScrollRevealProps {
@@ -18,12 +19,22 @@ export default function ScrollReveal({
   duration = 0.8,
   scale = false,
 }: ScrollRevealProps) {
+  const [mounted, setMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || prefersReduced) {
+    return <div>{children}</div>;
+  }
+
   const variants = {
     hidden: {
       opacity: 0,
       y: direction === "up" ? distance : direction === "down" ? -distance : 0,
-      x:
-        direction === "left" ? distance : direction === "right" ? -distance : 0,
+      x: direction === "left" ? distance : direction === "right" ? -distance : 0,
       scale: scale ? 0.9 : 1,
     },
     visible: {
