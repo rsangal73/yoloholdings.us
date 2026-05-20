@@ -5,5 +5,5 @@ export const SITE = {
   url: "https://yoloholdings.us",
   author: "Yolo Holdings LLC",
   ogImage: "/og-image.png",
-  web3formsAccessKey: "",
+  web3formsAccessKey: "0402873c-ec5c-42cd-b436-87be92e8cb29",
 };
