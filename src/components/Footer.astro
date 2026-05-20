@@ -1,0 +1,46 @@
+---
+import ContactForm from "./ContactForm.astro";
+---
+
+<footer id="contact" class="bg-slate-950 border-t border-slate-800" role="contentinfo">
+  <!-- Contact Section -->
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-2 gap-16">
+      <!-- Left: Contact info -->
+      <div>
+        <p class="font-mono text-xs text-amber-400 uppercase tracking-widest mb-4">
+          Corporate Desk
+        </p>
+        <h2 class="font-serif text-3xl md:text-4xl text-slate-100 mb-6">
+          Partner Inquiries
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-10 max-w-sm">
+          Inquiries from institutional partners, commercial brokers, and fund managers
+          can be directed to our corporate desk.
+        </p>
+        <div class="space-y-3 font-mono text-sm text-slate-600">
+          <p>Yolo Holdings LLC</p>
+          <p>Single-Member LLC</p>
+          <p>Private Investment Vehicle</p>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div>
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer bar -->
+  <div class="border-t border-slate-800/60 px-6 py-8">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+      <p class="font-mono text-xs text-slate-600">
+        &copy; 2026 Yolo Holdings LLC. All rights reserved.
+      </p>
+      <p class="font-mono text-xs text-slate-700">
+        Confidentiality Notice. For authorized recipients only.
+      </p>
+    </div>
+  </div>
+</footer>
