@@ -73,6 +73,40 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
     <span id="org-error" class="mt-1 font-mono text-xs text-red-400 hidden" role="alert" aria-live="polite"></span>
   </div>
 
+  <!-- Email -->
+  <div>
+    <label for="email" class="block font-mono text-xs text-slate-400 uppercase tracking-wider mb-2">
+      Email <span class="text-amber-400/70" aria-label="required">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="w-full px-4 py-3 bg-slate-800/60 border border-slate-700 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/60 transition-colors rounded-sm text-sm"
+      required
+      aria-required="true"
+      aria-describedby="email-error"
+      autocomplete="email"
+    />
+    <span id="email-error" class="mt-1 font-mono text-xs text-red-400 hidden" role="alert" aria-live="polite"></span>
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label for="phone" class="block font-mono text-xs text-slate-400 uppercase tracking-wider mb-2">
+      Phone
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      class="w-full px-4 py-3 bg-slate-800/60 border border-slate-700 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/60 transition-colors rounded-sm text-sm"
+      aria-describedby="phone-error"
+      autocomplete="tel"
+    />
+    <span id="phone-error" class="mt-1 font-mono text-xs text-red-400 hidden" role="alert" aria-live="polite"></span>
+  </div>
+
   <!-- Message -->
   <div>
     <label for="message" class="block font-mono text-xs text-slate-400 uppercase tracking-wider mb-2">
@@ -111,9 +145,12 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const orgInput = document.getElementById("organization") as HTMLInputElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const phoneInput = document.getElementById("phone") as HTMLInputElement;
   const messageInput = document.getElementById("message") as HTMLTextAreaElement;
   const nameError = document.getElementById("name-error") as HTMLSpanElement;
   const orgError = document.getElementById("org-error") as HTMLSpanElement;
+  const emailError = document.getElementById("email-error") as HTMLSpanElement;
   const messageError = document.getElementById("message-error") as HTMLSpanElement;
 
   function showFieldError(field: HTMLInputElement | HTMLTextAreaElement, errorEl: HTMLSpanElement, msg: string) {
@@ -149,6 +186,13 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
     else clearFieldError(orgInput, orgError);
   });
 
+  emailInput.addEventListener("blur", () => {
+    const v = emailInput.value.trim();
+    if (!v) showFieldError(emailInput, emailError, "Email is required");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) showFieldError(emailInput, emailError, "Please enter a valid email");
+    else clearFieldError(emailInput, emailError);
+  });
+
   messageInput.addEventListener("blur", () => {
     const v = messageInput.value.trim();
     if (!v) showFieldError(messageInput, messageError, "Message is required");
@@ -172,6 +216,7 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
 
     clearFieldError(nameInput, nameError);
     clearFieldError(orgInput, orgError);
+    clearFieldError(emailInput, emailError);
     clearFieldError(messageInput, messageError);
 
     let isValid = true;
@@ -182,6 +227,14 @@ const web3formsAccessKey = SITE.web3formsAccessKey || "";
     }
     if (!orgInput.value.trim()) {
       showFieldError(orgInput, orgError, "Organization is required");
+      isValid = false;
+    }
+    const emailVal = emailInput.value.trim();
+    if (!emailVal) {
+      showFieldError(emailInput, emailError, "Email is required");
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      showFieldError(emailInput, emailError, "Please enter a valid email");
       isValid = false;
     }
     if (!messageInput.value.trim()) {
