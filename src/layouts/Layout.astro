@@ -84,6 +84,29 @@ const robotsContent = [
 		<meta name="twitter:title" content={twitterTitle} />
 		<meta name="twitter:description" content={twitterDescription} />
 		<meta name="twitter:image" content={fullTwitterImage} />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json">
+			{JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Yolo Holdings LLC",
+				"url": "https://yoloholdings.us",
+				"description": "Yolo Holdings LLC is a private investment vehicle specializing in commercial real estate acquisition, strategic fund placement, and private equity allocations.",
+				"email": "contact@yoloholdings.us",
+				"address": {
+					"@type": "PostalAddress",
+					"addressCountry": "US"
+				},
+				"knowsAbout": [
+					"Commercial Real Estate",
+					"Private Equity",
+					"Net Lease",
+					"Private Investment",
+					"Real Estate Funds"
+				]
+			})}
+		</script>
 	</head>
 	<body class="min-h-screen bg-slate-900 text-slate-100 font-sans antialiased">
 		<a

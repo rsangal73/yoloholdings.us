@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yoloholdings.us/sitemap-index.xml
